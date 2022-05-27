@@ -139,3 +139,52 @@ Inside the docker container, run:
 ```
 ign gazebo mbari_wec.sdf -r
 ```
+
+### macOS
+
+Source library dependencies:
+
+```bash
+source ~/Code/ros2/ros2-galactic/install/setup.zsh
+source ~/Code/ros2/ros2-ign/install/setup.zsh
+source ~/Code/osrf/gz_garden_ws/install/setup.zsh
+source ~/Code/osrf/gz_garden_ws/set_gz_env.sh
+```
+
+Update `buoy_gazebo/CMakeLists.txt` for Gazebo Sim Garden
+
+```diff
+# buoy_gazebo/CMakeLists.txt
+ find_package(rclcpp REQUIRED)
+ find_package(buoy_msgs REQUIRED)
+ 
+-find_package(ignition-cmake2 REQUIRED)
+-find_package(ignition-plugin1 REQUIRED COMPONENTS register)
+-set(IGN_PLUGIN_VER ${ignition-plugin1_VERSION_MAJOR})
+-find_package(ignition-gazebo6 REQUIRED)
+-set(IGN_GAZEBO_VER ${ignition-gazebo6_VERSION_MAJOR})
++find_package(ignition-cmake3 REQUIRED)
++find_package(ignition-plugin2 REQUIRED COMPONENTS register)
++set(IGN_PLUGIN_VER ${ignition-plugin2_VERSION_MAJOR})
++find_package(ignition-gazebo7 REQUIRED)
++set(IGN_GAZEBO_VER ${ignition-gazebo7_VERSION_MAJOR})
+ 
+ 
+ # Plugins
+```
+
+Update `buoy_description/CMakeLists.txt` for `empy` on macOS
+
+```diff
+# buoy_description/CMakeLists.txt
+ file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}${BUOY_MODEL_PATH})
+ add_custom_command(
+   OUTPUT model_gen_cmd
+-  COMMAND empy3
++  # COMMAND empy3
++  COMMAND python -m em
+     ${CMAKE_CURRENT_SOURCE_DIR}${BUOY_MODEL_PATH}/model.sdf.em >
+     ${CMAKE_CURRENT_BINARY_DIR}${BUOY_MODEL_PATH}/model.sdf
+ )
+```
+
