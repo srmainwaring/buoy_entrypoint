@@ -25,7 +25,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 
 1. Install [ROS 2 Galactic](https://docs.ros.org/en/galactic/index.html)
 
-1. Install [Gazebo Fortress](https://ignitionrobotics.org/docs/fortress)
+1. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
 
 1. Install necessary tools
 
@@ -50,12 +50,11 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     cd ~/buoy_ws
     ```
 
-1. Set the Gazebo version to Fortress. This is needed because we're not using an
+1. Set the Gazebo version to Garden. This is needed because we're not using an
    official ROS + Gazebo combination:
 
     ```
-    export IGNITION_VERSION=fortress
-    export GZ_VERSION=fortress
+    export GZ_VERSION=garden
     ```
 
 1. Install ROS dependencies
@@ -163,11 +162,11 @@ Update `buoy_gazebo/CMakeLists.txt` for Gazebo Sim Garden
 -set(IGN_PLUGIN_VER ${ignition-plugin1_VERSION_MAJOR})
 -find_package(ignition-gazebo6 REQUIRED)
 -set(IGN_GAZEBO_VER ${ignition-gazebo6_VERSION_MAJOR})
-+find_package(ignition-cmake3 REQUIRED)
-+find_package(ignition-plugin2 REQUIRED COMPONENTS register)
-+set(IGN_PLUGIN_VER ${ignition-plugin2_VERSION_MAJOR})
-+find_package(ignition-gazebo7 REQUIRED)
-+set(IGN_GAZEBO_VER ${ignition-gazebo7_VERSION_MAJOR})
++find_package(gz-cmake3 REQUIRED)
++find_package(gz-plugin2 REQUIRED COMPONENTS register)
++set(GZ_PLUGIN_VER ${gz-plugin2_VERSION_MAJOR})
++find_package(gz-sim7 REQUIRED)
++set(GZ_SIM_VER ${gz-sim7_VERSION_MAJOR})
  
  
  # Plugins

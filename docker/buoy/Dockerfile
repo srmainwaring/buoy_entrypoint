@@ -8,8 +8,7 @@ RUN apt update \
         wget
 
 # Using non-official Gazebo + ROS combination, set it explicitly
-ENV IGNITION_VERSION fortress
-ENV GZ_VERSION fortress
+ENV GZ_VERSION garden
 
 # Create project directory and import packages
 RUN mkdir -p /tmp/buoy_ws/src \
